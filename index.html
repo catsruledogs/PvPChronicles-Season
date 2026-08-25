@@ -2,486 +2,812 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>PvP Chronicles: Seasons</title>
 
-  <link rel="icon" type="image/png" href="media/favicon.png">
-  <link rel="stylesheet" href="media/style.css">
-  <link href="https://fonts.bunny.net/css?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-light: #111111;
+      --card: #151515;
+      --card-hover: #1b1b1b;
+      --border: #292929;
+      --text: #f2f2f2;
+      --muted: #a0a0a0;
+      --accent: #e63946;
+      --accent-dark: #a51f2a;
+      --success: #4caf50;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 18px 7%;
+
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar_logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .navbar_logo span {
+      color: var(--accent);
+    }
+
+    .navbar_links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .navbar_links a {
+      color: var(--muted);
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .navbar_links a:hover {
+      color: var(--text);
+    }
+
+    .navbar_join {
+      padding: 9px 17px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: white !important;
+    }
+
+    .navbar_join:hover {
+      background: var(--accent-dark);
+    }
+
+    /* Hero */
+
+    .hero {
+      min-height: 90vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 80px 20px;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(230, 57, 70, 0.12),
+          transparent 55%
+        );
+    }
+
+    .hero_content {
+      max-width: 900px;
+    }
+
+    .server_badge {
+      display: inline-block;
+
+      margin-bottom: 22px;
+      padding: 7px 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      background: var(--card);
+      color: var(--muted);
+
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -3px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero_tagline {
+      margin-top: 25px;
+
+      color: var(--muted);
+      font-size: clamp(18px, 3vw, 26px);
+    }
+
+    .server_ip {
+      display: inline-block;
+
+      margin-top: 35px;
+      padding: 15px 24px;
+
+      border: 1px solid var(--border);
+      border-radius: 8px;
+
+      background: var(--card);
+
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: 700;
+
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .server_ip:hover {
+      border-color: var(--accent);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    .copy_hint {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: normal;
+    }
+
+    .season_banner {
+      max-width: 700px;
+      margin: 50px auto 0;
+
+      padding: 28px;
+
+      border: 1px solid var(--accent-dark);
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(230, 57, 70, 0.12),
+          rgba(0, 0, 0, 0.2)
+        );
+    }
+
+    .season_title {
+      display: block;
+
+      color: var(--accent);
+
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .season_date {
+      display: block;
+
+      margin-top: 5px;
+
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .season_text {
+      display: block;
+
+      margin-top: 10px;
+
+      color: var(--muted);
+    }
+
+    /* Sections */
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 100px 25px;
+    }
+
+    .section_title {
+      margin-bottom: 45px;
+
+      text-align: center;
+
+      font-size: 38px;
+      font-weight: 900;
+    }
+
+    .section_title span {
+      color: var(--accent);
+    }
+
+    /* Features */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      padding: 25px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: var(--card);
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-dark);
+      background: var(--card-hover);
+    }
+
+    .feature_number {
+      color: var(--accent);
+
+      font-family: monospace;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .feature h3 {
+      margin-top: 12px;
+
+      font-size: 19px;
+    }
+
+    .feature p {
+      margin-top: 10px;
+
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Staff */
+
+    .staff {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+
+      max-width: 750px;
+      margin: auto;
+    }
+
+    .staff_member {
+      padding: 30px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: var(--card);
+    }
+
+    .staff_rank {
+      display: inline-block;
+
+      margin-bottom: 10px;
+      padding: 4px 9px;
+
+      border-radius: 4px;
+
+      background: rgba(230, 57, 70, 0.12);
+      color: var(--accent);
+
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .staff_member h3 {
+      font-size: 24px;
+    }
+
+    .staff_member p {
+      margin-top: 8px;
+
+      color: var(--muted);
+    }
+
+    /* Join */
+
+    .join_grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .join_card {
+      padding: 35px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: var(--card);
+    }
+
+    .join_card h3 {
+      margin-bottom: 25px;
+
+      font-size: 28px;
+    }
+
+    .join_info {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 10px;
+
+      font-size: 15px;
+    }
+
+    .join_label {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .join_value {
+      font-family: monospace;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .instructions {
+      margin-top: 30px;
+      padding-top: 25px;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .instructions h4 {
+      margin-bottom: 12px;
+
+      font-size: 18px;
+    }
+
+    .instructions p {
+      margin-bottom: 12px;
+
+      color: var(--muted);
+    }
+
+    .instructions ul {
+      margin: 12px 0 20px 20px;
+
+      color: var(--muted);
+    }
+
+    .download_link {
+      display: inline-block;
+
+      margin-top: 5px;
+      padding: 10px 15px;
+
+      border-radius: 6px;
+
+      background: var(--accent);
+      color: white;
+
+      font-weight: 700;
+
+      transition: background 0.2s ease;
+    }
+
+    .download_link:hover {
+      background: var(--accent-dark);
+    }
+
+    .important {
+      margin-top: 18px;
+      padding: 14px;
+
+      border-left: 3px solid var(--accent);
+
+      background: rgba(230, 57, 70, 0.07);
+      color: var(--muted);
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 35px 20px;
+
+      border-top: 1px solid var(--border);
+
+      text-align: center;
+
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: var(--text);
+    }
+
+    /* Mobile */
+
+    @media (max-width: 900px) {
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .navbar {
+        padding: 16px 20px;
+      }
+
+      .navbar_links {
+        gap: 12px;
+      }
+
+      .navbar_links a:not(.navbar_join) {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 90px 20px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .features,
+      .staff,
+      .join_grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 70px 20px;
+      }
+
+      .section_title {
+        font-size: 31px;
+      }
+
+      .join_info {
+        grid-template-columns: 75px 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <!-- Desktop Navigation -->
-  <nav class="desktop_navbar">
-    <a href="#">
-      <img
-        class="desktop_navbar_logo_img"
-        src="media/logo_small.png"
-        alt="PvP Chronicles: Seasons logo"
-      >
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#" class="navbar_logo">
+      PvP <span>Chronicles</span>
     </a>
 
-    <a href="#more" class="desktop_navbar_link scroll">
-      Features
-    </a>
-
-    <a href="#about" class="desktop_navbar_link scroll">
-      Staff
-    </a>
-
-    <div class="desktop_navbar_link2_div">
-      <a href="#join" class="desktop_navbar_link2 scroll">
-        Join Us!
-      </a>
+    <div class="navbar_links">
+      <a href="#features">Features</a>
+      <a href="#staff">Staff</a>
+      <a href="#join">How to Join</a>
+      <a href="#join" class="navbar_join">Join Us</a>
     </div>
   </nav>
 
-  <!-- Mobile Navigation -->
-  <div class="mobile_navbar">
-    <a href="#" class="mobile_navbar_logo_img_a">
-      <img
-        class="mobile_navbar_logo_img"
-        src="media/logo_small.png"
-        alt="PvP Chronicles: Seasons logo"
-      >
-    </a>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero_content">
 
-    <div id="mobile_navbar_links">
-      <a
-        class="mobile_navbar_link scroll"
-        onclick="mobile_navbar_link_hider()"
-        href="#more"
-      >
-        Features
-      </a>
-
-      <a
-        class="mobile_navbar_link scroll"
-        onclick="mobile_navbar_link_hider()"
-        href="#about"
-      >
-        Staff
-      </a>
-
-      <a
-        class="mobile_navbar_link scroll"
-        onclick="mobile_navbar_link_hider()"
-        href="#join"
-      >
-        Join Us
-      </a>
-    </div>
-
-    <div class="icon" onclick="mobile_navbar_link_hider()">
-      <i class="fa fa-bars"></i>
-    </div>
-
-    <script>
-      function mobile_navbar_link_hider() {
-        var x = document.getElementById("mobile_navbar_links");
-
-        if (x.style.display === "flex") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "flex";
-        }
-      }
-    </script>
-  </div>
-
-  <div class="mainflex">
-
-    <!-- Hero Section -->
-    <div class="main1">
-
-      <a class="main1_logo_a" href="#">
-        <img
-          class="main1_logo"
-          src="media/logo.png"
-          alt="PvP Chronicles: Seasons"
-        >
-      </a>
-
-      <div class="main1_description">
-        <a>
-          PvP,<br>
-          like
-        </a>
-
-        <a class="main1_actcent">
-          there are almost no rules
-        </a>
-
-        <a>.</a>
+      <div class="server_badge">
+        Minecraft PvP Server
       </div>
 
-      <!-- Server Address -->
-      <div class="main1_ipcopier_div">
-        <button
-          class="main1_ipcopier"
-          onclick="copyText()"
-          type="button"
-        >
-          <span class="main1_ipcopier_text1">
+      <h1>
+        PvP Chronicles<span>:</span> Seasons
+      </h1>
+
+      <p class="hero_tagline">
+        PvP like there are almost no rules.
+      </p>
+
+      <button
+        class="server_ip"
+        onclick="copyServerIP()"
+        type="button"
+      >
+        pvpchronicles.dpdns.org
+        <span class="copy_hint">
+          Click to copy server address
+        </span>
+      </button>
+
+      <div class="season_banner">
+        <span class="season_title">
+          SEASON 1
+        </span>
+
+        <span class="season_date">
+          Starts August 26th
+        </span>
+
+        <span class="season_text">
+          The first season of PvP Chronicles: Seasons is almost here.
+          Get ready for PvP, rivalries, chaos, and almost no rules.
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Features -->
+  <section id="features">
+
+    <h2 class="section_title">
+      What <span>we have</span>
+    </h2>
+
+    <div class="features">
+
+      <div class="feature">
+        <span class="feature_number">01</span>
+        <h3>Open PvP</h3>
+        <p>
+          Fight other players, build your reputation,
+          and prove yourself.
+        </p>
+      </div>
+
+      <div class="feature">
+        <span class="feature_number">02</span>
+        <h3>Almost No Rules</h3>
+        <p>
+          Play your way with very few restrictions.
+          Just expect consequences.
+        </p>
+      </div>
+
+      <div class="feature">
+        <span class="feature_number">03</span>
+        <h3>Season 1</h3>
+        <p>
+          Season 1 starts August 26th.
+          Be there from the beginning.
+        </p>
+      </div>
+
+      <div class="feature">
+        <span class="feature_number">04</span>
+        <h3>Rivalries</h3>
+        <p>
+          Make allies, make enemies, and create
+          your own story.
+        </p>
+      </div>
+
+      <div class="feature">
+        <span class="feature_number">05</span>
+        <h3>Pure Minecraft</h3>
+        <p>
+          Jump into the world and see what happens.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Staff -->
+  <section id="staff">
+
+    <h2 class="section_title">
+      Who <span>we are</span>
+    </h2>
+
+    <div class="staff">
+
+      <div class="staff_member">
+        <span class="staff_rank">
+          [OWNER]
+        </span>
+
+        <h3>
+          mew_404
+        </h3>
+
+        <p>
+          Founder and owner of PvP Chronicles: Seasons.
+        </p>
+      </div>
+
+      <div class="staff_member">
+        <span class="staff_rank">
+          [ADMIN]
+        </span>
+
+        <h3>
+          RoboPig111
+        </h3>
+
+        <p>
+          Administrator helping manage the server and community.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- How to Join -->
+  <section id="join">
+
+    <h2 class="section_title">
+      How to <span>join</span>
+    </h2>
+
+    <div class="join_grid">
+
+      <!-- Java -->
+      <div class="join_card">
+
+        <h3>
+          Java Edition
+        </h3>
+
+        <div class="join_info">
+          <span class="join_label">IP:</span>
+          <span class="join_value">
             pvpchronicles.dpdns.org
           </span>
 
-          <br>
-
-          <span class="main1_ipcopier_text2">
-            Click to copy
+          <span class="join_label">Version:</span>
+          <span class="join_value">
+            26.2
           </span>
-        </button>
+        </div>
 
-        <script>
-          function copyText() {
-            navigator.clipboard.writeText("pvpchronicles.dpdns.org");
-          }
+        <div class="instructions">
 
-          $(document).ready(function () {
-            $('.main1_ipcopier').click(function () {
-              var popup = $('<div>', {
-                class: 'main1_popup'
-              }).append(
-                $('<h3 class="copy_confirm">')
-                  .text('Copied IP to clipboard')
-              );
+          <h4>
+            Required Mods
+          </h4>
 
-              $(this).after(popup);
+          <p>
+            To join on Java Edition, you need:
+          </p>
 
-              setTimeout(function () {
-                popup.remove();
-              }, 1000);
-            });
-          });
-        </script>
+          <ul>
+            <li>Fabric Loader</li>
+            <li>Fabric API</li>
+            <li>Backport 26.3 Update</li>
+          </ul>
+
+          <a
+            href="https://www.curseforge.com/minecraft/mc-mods/backport-update"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="download_link"
+          >
+            Download Backport 26.3 Update
+          </a>
+
+          <p style="margin-top: 18px;">
+            The Backport mod brings selected Minecraft 26.3
+            content and gameplay changes to Minecraft 26.2.
+          </p>
+
+        </div>
+
       </div>
 
-      <!-- Season 1 Banner -->
-      <div class="season_banner">
-        <a class="season_banner_title">
-          SEASON 1
-        </a>
+      <!-- Bedrock -->
+      <div class="join_card">
 
-        <a class="season_banner_date">
-          Starts August 26th
-        </a>
+        <h3>
+          Bedrock Edition
+        </h3>
 
-        <a class="season_banner_text">
-          The first season of PvP Chronicles: Seasons is almost here.
-          Get ready for PvP, rivalries, chaos, and almost no rules.
-        </a>
+        <div class="join_info">
+          <span class="join_label">IP:</span>
+          <span class="join_value">
+            pvpchronicles.dpdns.org
+          </span>
+
+          <span class="join_label">Port:</span>
+          <span class="join_value">
+            25565
+          </span>
+        </div>
+
+        <div class="instructions">
+
+          <h4>
+            Important
+          </h4>
+
+          <p>
+            The port must be manually specified when
+            adding the server on Bedrock Edition.
+          </p>
+
+          <div class="important">
+            <strong>Server Address</strong><br>
+            pvpchronicles.dpdns.org
+            <br><br>
+            <strong>Port</strong><br>
+            25565
+          </div>
+
+        </div>
+
       </div>
-
-      <a href="#more" class="scroll">
-        <img
-          alt="downarrow"
-          class="main1_downarrow"
-          src="media/downarrow.png"
-        >
-      </a>
-
-      <script>
-        const scrollLinks = document.querySelectorAll('.scroll');
-
-        scrollLinks.forEach(function (link) {
-          link.addEventListener('click', function (event) {
-            event.preventDefault();
-
-            const target = document.querySelector(
-              link.getAttribute('href')
-            );
-
-            const offsetTop = target.offsetTop;
-
-            window.scrollTo({
-              top: offsetTop,
-              behavior: 'smooth'
-            });
-          });
-        });
-      </script>
 
     </div>
 
-    <div id="more"></div>
-
-    <!-- Features -->
-    <div class="main2">
-      <a class="headline">
-        What we have
-      </a>
-
-      <div class="main2_features_div">
-
-        <div class="main2_feature">
-          <img
-            class="main2_feature_img"
-            alt="PvP"
-            src="media/placeholder.png"
-          >
-
-          <a class="main2_feature_headline">
-            Open PvP
-          </a>
-
-          <a class="main2_feature_text">
-            Fight other players, build your reputation,
-            and prove yourself.
-          </a>
-        </div>
-
-        <div class="main2_feature">
-          <img
-            class="main2_feature_img"
-            alt="Almost No Rules"
-            src="media/placeholder.png"
-          >
-
-          <a class="main2_feature_headline">
-            Almost No Rules
-          </a>
-
-          <a class="main2_feature_text">
-            Play your way with very few restrictions.
-            Just expect consequences.
-          </a>
-        </div>
-
-        <div class="main2_feature">
-          <img
-            class="main2_feature_img"
-            alt="Season 1"
-            src="media/placeholder.png"
-          >
-
-          <a class="main2_feature_headline">
-            Season 1
-          </a>
-
-          <a class="main2_feature_text">
-            Season 1 starts August 26th.
-            Be there from the beginning.
-          </a>
-        </div>
-
-        <div class="main2_feature">
-          <img
-            class="main2_feature_img"
-            alt="Rivalries"
-            src="media/placeholder.png"
-          >
-
-          <a class="main2_feature_headline">
-            Rivalries
-          </a>
-
-          <a class="main2_feature_text">
-            Make allies, make enemies, and create
-            your own story.
-          </a>
-        </div>
-
-        <div class="main2_feature">
-          <img
-            class="main2_feature_img"
-            alt="Minecraft"
-            src="media/placeholder.png"
-          >
-
-          <a class="main2_feature_headline">
-            Minecraft
-          </a>
-
-          <a class="main2_feature_text">
-            Jump into the world and see what happens.
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Staff -->
-    <div id="about"></div>
-
-    <div class="main5">
-      <a class="headline">
-        Who we are
-      </a>
-
-      <div class="main5_admin_div">
-
-        <!-- Owner -->
-        <div class="main5_admins_div main5_admins_dev_type2">
-          <div class="main5_admins_description_div">
-
-            <a class="main5_admins_description_rank main5_admins_description_rank_owner">
-              [Owner]
-            </a>
-
-            <a class="main5_admins_description_title">
-              mew_404
-            </a>
-
-            <a class="main5_admins_description">
-              Owner<br>
-              Founder and owner of PvP Chronicles: Seasons.
-            </a>
-
-          </div>
-        </div>
-
-        <!-- Admin -->
-        <div class="main5_admins_div main5_admins_dev_type1">
-          <div class="main5_admins_description_div">
-
-            <a class="main5_admins_description_rank main5_admins_description_rank_admin">
-              [Admin]
-            </a>
-
-            <a class="main5_admins_description_title">
-              RoboPig111
-            </a>
-
-            <a class="main5_admins_description">
-              Administrator<br>
-              Helps manage the server and community.
-            </a>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- How to Join -->
-    <div id="join"></div>
-
-    <div class="main3">
-      <a class="headline">
-        How to join
-      </a>
-
-      <div class="main3_join_div_div">
-
-        <!-- Java Edition -->
-        <div class="main3_join_div">
-
-          <a class="main3_join_title">
-            Java Edition
-          </a>
-
-          <div class="main3_join_content_div">
-
-            <div class="main3_join_categories">
-              <a>IP:</a>
-              <a>Version:</a>
-            </div>
-
-            <div class="main3_join_values">
-              <a>pvpchronicles.dpdns.org</a>
-              <a>26.2</a>
-            </div>
-
-          </div>
-
-          <div class="join_instructions">
-
-            <a class="main3_join_title">
-              Required Mods
-            </a>
-
-            <a class="main3_join_text">
-              To join on Java Edition, you need:
-            </a>
-
-            <a class="main3_join_text">
-              • Fabric Loader<br>
-              • Fabric API<br>
-              • Backport 26.3 Update
-            </a>
-
-            <a
-              href="https://www.curseforge.com/minecraft/mc-mods/backport-update"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="main3_join_link"
-            >
-              Download Backport 26.3 Update
-            </a>
-
-            <a class="main3_join_text">
-              The Backport mod brings selected Minecraft 26.3
-              content and gameplay changes to Minecraft 26.2.
-            </a>
-
-          </div>
-
-        </div>
-
-        <!-- Bedrock Edition -->
-        <div class="main3_join_div">
-
-          <a class="main3_join_title">
-            Bedrock Edition
-          </a>
-
-          <div class="main3_join_content_div">
-
-            <div class="main3_join_categories">
-              <a>IP:</a>
-              <a>Port:</a>
-            </div>
-
-            <div class="main3_join_values">
-              <a>pvpchronicles.dpdns.org</a>
-              <a>25565</a>
-            </div>
-
-          </div>
-
-          <div class="join_instructions">
-
-            <a class="main3_join_title">
-              Important
-            </a>
-
-            <a class="main3_join_text">
-              The port must be manually specified when
-              adding the server on Bedrock Edition.
-            </a>
-
-            <a class="main3_join_text">
-              <strong>Server Address:</strong><br>
-              pvpchronicles.dpdns.org
-            </a>
-
-            <a class="main3_join_text">
-              <strong>Port:</strong><br>
-              25565
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-
-  </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="copyright_div">
-    <a href="#" class="copyright">
-      PvP Chronicles: Seasons © 2026 — Owned by mew_404
-    </a>
+  <footer>
+    <strong>PvP Chronicles: Seasons</strong>
+    © 2026 — Owned by mew_404
   </footer>
+
+  <script>
+    function copyServerIP() {
+      navigator.clipboard.writeText("pvpchronicles.dpdns.org");
+
+      const button = document.querySelector(".server_ip");
+      const hint = button.querySelector(".copy_hint");
+
+      const originalText = hint.textContent;
+
+      hint.textContent = "Copied!";
+
+      setTimeout(function () {
+        hint.textContent = originalText;
+      }, 1500);
+    }
+  </script>
 
 </body>
 </html>
