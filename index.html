@@ -6,6 +6,13 @@
 
   <title>PvP Chronicles: Seasons</title>
 
+  <!-- Minecraft skin as browser tab icon -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://api.mcskin.me/head/mew_404?size=64"
+  >
+
   <style>
     :root {
       --bg: #0a0a0a;
@@ -81,7 +88,6 @@
     .navbar_links a {
       color: var(--muted);
       font-weight: 600;
-
       transition: color 0.2s ease;
     }
 
@@ -193,7 +199,6 @@
     .server_ip:hover {
       border-color: var(--accent);
       background: var(--card-hover);
-
       transform: translateY(-2px);
     }
 
@@ -348,24 +353,54 @@
 
       gap: 20px;
 
-      max-width: 750px;
+      max-width: 800px;
 
       margin: auto;
     }
 
     .staff_member {
-      padding: 30px;
+      display: flex;
+      align-items: center;
+
+      gap: 20px;
+
+      padding: 25px;
 
       border: 1px solid var(--border);
       border-radius: 10px;
 
       background: var(--card);
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .staff_member:hover {
+      transform: translateY(-4px);
+
+      border-color: var(--accent-dark);
+
+      background: var(--card-hover);
+    }
+
+    .staff_skin {
+      width: 80px;
+      height: 80px;
+
+      flex-shrink: 0;
+
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+
+      object-fit: contain;
     }
 
     .staff_rank {
       display: inline-block;
 
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       padding: 4px 9px;
 
       border-radius: 4px;
@@ -383,7 +418,7 @@
     }
 
     .staff_member p {
-      margin-top: 8px;
+      margin-top: 6px;
 
       color: var(--muted);
     }
@@ -440,14 +475,6 @@
       font-size: 21px;
     }
 
-    .rule p {
-      margin-top: 10px;
-
-      color: var(--muted);
-
-      font-size: 14px;
-    }
-
     .rules_footer {
       margin-top: 35px;
 
@@ -496,7 +523,6 @@
 
     .join_label {
       color: var(--muted);
-
       font-weight: 700;
     }
 
@@ -612,7 +638,6 @@
 
       .hero {
         min-height: auto;
-
         padding: 90px 20px;
       }
 
@@ -624,6 +649,10 @@
       .staff,
       .join_grid {
         grid-template-columns: 1fr;
+      }
+
+      .staff_member {
+        align-items: flex-start;
       }
 
       section {
@@ -654,10 +683,23 @@
     </a>
 
     <div class="navbar_links">
-      <a href="#features">Features</a>
-      <a href="#staff">Staff</a>
-      <a href="#rules">Rules</a>
-      <a href="#join" class="navbar_join">Join Us</a>
+
+      <a href="#features">
+        Features
+      </a>
+
+      <a href="#staff">
+        Staff
+      </a>
+
+      <a href="#rules">
+        Rules
+      </a>
+
+      <a href="#join" class="navbar_join">
+        Join Us
+      </a>
+
     </div>
 
   </nav>
@@ -733,7 +775,9 @@
     <div class="features">
 
       <div class="feature">
-        <span class="feature_number">01</span>
+        <span class="feature_number">
+          01
+        </span>
 
         <h3>
           Open PvP
@@ -747,7 +791,9 @@
 
 
       <div class="feature">
-        <span class="feature_number">02</span>
+        <span class="feature_number">
+          02
+        </span>
 
         <h3>
           Almost No Rules
@@ -761,7 +807,9 @@
 
 
       <div class="feature">
-        <span class="feature_number">03</span>
+        <span class="feature_number">
+          03
+        </span>
 
         <h3>
           Season 1
@@ -775,7 +823,9 @@
 
 
       <div class="feature">
-        <span class="feature_number">04</span>
+        <span class="feature_number">
+          04
+        </span>
 
         <h3>
           Rivalries
@@ -789,7 +839,9 @@
 
 
       <div class="feature">
-        <span class="feature_number">05</span>
+        <span class="feature_number">
+          05
+        </span>
 
         <h3>
           Pure Minecraft
@@ -817,36 +869,61 @@
 
     <div class="staff">
 
+
+      <!-- Owner -->
+
       <div class="staff_member">
 
-        <span class="staff_rank">
-          [OWNER]
-        </span>
+        <img
+          class="staff_skin"
+          src="https://api.mcskin.me/head/mew_404?size=128"
+          alt="Minecraft head of mew_404"
+        >
 
-        <h3>
-          mew_404
-        </h3>
+        <div>
 
-        <p>
-          Founder and owner of PvP Chronicles: Seasons.
-        </p>
+          <span class="staff_rank">
+            [OWNER]
+          </span>
+
+          <h3>
+            mew_404
+          </h3>
+
+          <p>
+            Founder and owner of PvP Chronicles: Seasons.
+          </p>
+
+        </div>
 
       </div>
 
 
+      <!-- Admin -->
+
       <div class="staff_member">
 
-        <span class="staff_rank">
-          [ADMIN]
-        </span>
+        <img
+          class="staff_skin"
+          src="https://api.mcskin.me/head/RoboPig111?size=128"
+          alt="Minecraft head of RoboPig111"
+        >
 
-        <h3>
-          RoboPig111
-        </h3>
+        <div>
 
-        <p>
-          Administrator helping manage the server and community.
-        </p>
+          <span class="staff_rank">
+            [ADMIN]
+          </span>
+
+          <h3>
+            RoboPig111
+          </h3>
+
+          <p>
+            Administrator helping manage the server and community.
+          </p>
+
+        </div>
 
       </div>
 
@@ -877,11 +954,6 @@
           No Cheating
         </h3>
 
-        <p>
-          Keep it fair. Don't use anything that gives
-          you an unfair advantage over other players.
-        </p>
-
       </div>
 
 
@@ -894,11 +966,6 @@
         <h3>
           No X-Ray
         </h3>
-
-        <p>
-          Don't use X-Ray or anything that lets you
-          see through blocks to find ores or players.
-        </p>
 
       </div>
 
@@ -913,18 +980,12 @@
           No Hacks
         </h3>
 
-        <p>
-          No hacked clients or other cheats designed
-          to give you an unfair advantage.
-        </p>
-
       </div>
 
     </div>
 
     <p class="rules_footer">
-      That's it. Three rules. Have fun and don't ruin
-      the game for everyone else.
+      That's it. Three rules. Have fun.
     </p>
 
   </section>
