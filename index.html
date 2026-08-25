@@ -821,6 +821,7 @@
   </nav>
 
 
+
   <!-- =========================
        Hero
   ========================= -->
@@ -852,6 +853,7 @@
           Click to copy server address
         </span>
       </button>
+
 
 
       <!-- =========================
@@ -893,6 +895,7 @@
       </div>
 
 
+
       <!-- =========================
            Season 1
       ========================= -->
@@ -917,6 +920,7 @@
     </div>
 
   </header>
+
 
 
   <!-- =========================
@@ -947,6 +951,7 @@
       </div>
 
 
+
       <div class="feature">
         <span class="feature_number">
           02
@@ -960,6 +965,7 @@
           Play your way with very few restrictions.
         </p>
       </div>
+
 
 
       <div class="feature">
@@ -977,6 +983,7 @@
       </div>
 
 
+
       <div class="feature">
         <span class="feature_number">
           04
@@ -991,6 +998,7 @@
           your own story.
         </p>
       </div>
+
 
 
       <div class="feature">
@@ -1011,6 +1019,7 @@
     </div>
 
   </section>
+
 
 
   <!-- =========================
@@ -1054,6 +1063,7 @@
       </div>
 
 
+
       <!-- Admin -->
 
       <div class="staff_member">
@@ -1087,6 +1097,7 @@
   </section>
 
 
+
   <!-- =========================
        Rules
   ========================= -->
@@ -1112,6 +1123,7 @@
       </div>
 
 
+
       <div class="rule">
 
         <span class="rule_number">
@@ -1123,6 +1135,7 @@
         </h3>
 
       </div>
+
 
 
       <div class="rule">
@@ -1146,6 +1159,7 @@
   </section>
 
 
+
   <!-- =========================
        How to Join
   ========================= -->
@@ -1157,6 +1171,7 @@
     </h2>
 
     <div class="join_grid">
+
 
 
       <!-- Java Edition -->
@@ -1178,6 +1193,7 @@
           </span>
 
 
+
           <span class="join_label">
             Version:
           </span>
@@ -1187,6 +1203,7 @@
           </span>
 
         </div>
+
 
 
         <div class="instructions">
@@ -1206,14 +1223,16 @@
           </ul>
 
 
+
           <a
             href="https://www.curseforge.com/minecraft/mc-mods/backport-update"
             target="_blank"
             rel="noopener noreferrer"
             class="download_link"
           >
-            Download Backport 26.3 Update (Links To CurseForge)
+            Download Backport 26.3 Update (CurseForge)
           </a>
+
 
 
           <p style="margin-top: 18px;">
@@ -1224,6 +1243,7 @@
         </div>
 
       </div>
+
 
 
       <!-- Bedrock Edition -->
@@ -1245,6 +1265,7 @@
           </span>
 
 
+
           <span class="join_label">
             Port:
           </span>
@@ -1254,6 +1275,7 @@
           </span>
 
         </div>
+
 
 
         <div class="instructions">
@@ -1266,6 +1288,7 @@
             The port must be manually specified when
             adding the server on Bedrock Edition.
           </p>
+
 
 
           <div class="important">
@@ -1290,6 +1313,36 @@
 
           </div>
 
+
+          <!-- =========================
+               Console Alternative
+          ========================= -->
+
+          <div class="important">
+
+            <strong>
+              Alternative for PlayStation, Xbox & Nintendo Switch
+            </strong>
+
+            <br><br>
+
+            If you are playing on PlayStation, Xbox, or Nintendo Switch,
+            add/friend the Minecraft account:
+
+            <br><br>
+
+            <strong>
+              PvPChronicles
+            </strong>
+
+            <br><br>
+
+            Once the account appears in your friends list, join
+            <strong>PvPChronicles</strong> through the Minecraft
+            Friends tab to connect to the server.
+
+          </div>
+
         </div>
 
       </div>
@@ -1297,6 +1350,7 @@
     </div>
 
   </section>
+
 
 
   <!-- =========================
@@ -1312,6 +1366,7 @@
     © 2026 — Owned by mew_404
 
   </footer>
+
 
 
   <!-- =========================
@@ -1346,6 +1401,7 @@
     }
 
 
+
     /*
      * Live Minecraft server status
      *
@@ -1375,6 +1431,7 @@
         "pvpchronicles.dpdns.org";
 
 
+
       try {
 
         const response = await fetch(
@@ -1383,12 +1440,15 @@
         );
 
 
+
         if (!response.ok) {
           throw new Error("Status request failed");
         }
 
 
+
         const data = await response.json();
+
 
 
         /*
@@ -1405,6 +1465,7 @@
 
           statusText.textContent =
             "ONLINE";
+
 
 
           if (data.players) {
@@ -1431,10 +1492,12 @@
           }
 
 
+
           statusUpdated.textContent =
             "Status updated just now";
 
         }
+
 
 
         /*
@@ -1461,6 +1524,7 @@
         }
 
       }
+
 
 
       /*
@@ -1494,11 +1558,13 @@
     }
 
 
+
     /*
      * Check immediately when the page loads.
      */
 
     updateServerStatus();
+
 
 
     /*
