@@ -6,7 +6,7 @@
 
   <title>PvP Chronicles: Seasons</title>
 
-  <!-- Minecraft skin as browser tab icon -->
+  <!-- Browser tab icon -->
   <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
@@ -20,6 +20,8 @@
       --muted: #a0a0a0;
       --accent: #e63946;
       --accent-dark: #a51f2a;
+      --online: #35c759;
+      --offline: #ff453a;
     }
 
     * {
@@ -66,12 +68,32 @@
     }
 
     .navbar_logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
       font-size: 20px;
       font-weight: 800;
       letter-spacing: 1px;
     }
 
-    .navbar_logo span {
+    .navbar_logo img {
+      width: 30px;
+      height: 30px;
+
+      object-fit: contain;
+
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+
+      flex-shrink: 0;
+    }
+
+    .navbar_logo_text {
+      color: var(--text);
+    }
+
+    .navbar_logo_text span {
       color: var(--accent);
     }
 
@@ -128,6 +150,7 @@
     }
 
     .hero_content {
+      width: 100%;
       max-width: 900px;
     }
 
@@ -208,6 +231,94 @@
       font-family: Arial, Helvetica, sans-serif;
       font-size: 11px;
       font-weight: normal;
+    }
+
+    /* =========================
+       Server Status
+    ========================= */
+
+    .server_status {
+      max-width: 500px;
+
+      margin: 25px auto 0;
+      padding: 18px 25px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: var(--card);
+
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .server_status:hover {
+      background: var(--card-hover);
+    }
+
+    .status_header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 9px;
+
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .status_dot {
+      width: 10px;
+      height: 10px;
+
+      border-radius: 50%;
+
+      background: var(--muted);
+
+      box-shadow: 0 0 8px rgba(160, 160, 160, 0.5);
+    }
+
+    .status_dot.online {
+      background: var(--online);
+      box-shadow: 0 0 10px rgba(53, 199, 89, 0.7);
+    }
+
+    .status_dot.offline {
+      background: var(--offline);
+      box-shadow: 0 0 10px rgba(255, 69, 58, 0.6);
+    }
+
+    .status_text {
+      color: var(--muted);
+    }
+
+    .status_text.online {
+      color: var(--online);
+    }
+
+    .status_text.offline {
+      color: var(--offline);
+    }
+
+    .player_count {
+      margin-top: 7px;
+
+      color: var(--text);
+
+      font-family: monospace;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .status_updated {
+      margin-top: 5px;
+
+      color: var(--muted);
+
+      font-size: 11px;
     }
 
     /* =========================
@@ -675,7 +786,16 @@
   <nav class="navbar">
 
     <a href="#" class="navbar_logo">
-      PvP <span>Chronicles</span>
+
+      <img
+        src="favicon.png"
+        alt="PvP Chronicles"
+      >
+
+      <span class="navbar_logo_text">
+        PvP <span>Chronicles</span>
+      </span>
+
     </a>
 
     <div class="navbar_links">
@@ -734,7 +854,48 @@
       </button>
 
 
-      <!-- Season 1 -->
+      <!-- =========================
+           Live Server Status
+      ========================= -->
+
+      <div class="server_status">
+
+        <div class="status_header">
+
+          <span
+            id="statusDot"
+            class="status_dot"
+          ></span>
+
+          <span
+            id="statusText"
+            class="status_text"
+          >
+            Checking server...
+          </span>
+
+        </div>
+
+        <div
+          id="playerCount"
+          class="player_count"
+        >
+          Checking player count...
+        </div>
+
+        <div
+          id="statusUpdated"
+          class="status_updated"
+        >
+          Updating...
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           Season 1
+      ========================= -->
 
       <div class="season_banner">
 
@@ -843,7 +1004,8 @@
         </h3>
 
         <p>
-          One of the first PvP servers with Minecraft 26.3 features for both Java and Bedrock.
+          One of the first PvP servers with Minecraft 26.3
+          features for both Java and Bedrock.
         </p>
       </div>
 
@@ -863,7 +1025,6 @@
     </h2>
 
     <div class="staff">
-
 
       <!-- Owner -->
 
@@ -1052,7 +1213,7 @@
             rel="noopener noreferrer"
             class="download_link"
           >
-            Download Backport 26.3 Update (Download Links To CurseForge)
+            Download Backport 26.3 Update
           </a>
 
 
@@ -1159,7 +1320,13 @@
   ========================= -->
 
   <script>
+
+    /*
+     * Copy server address
+     */
+
     function copyServerIP() {
+
       const ip = "pvpchronicles.dpdns.org";
 
       navigator.clipboard.writeText(ip);
@@ -1172,9 +1339,178 @@
       hint.textContent = "Copied!";
 
       setTimeout(function () {
+
         hint.textContent = originalText;
+
       }, 1500);
+
     }
+
+
+    /*
+     * Live Minecraft server status
+     *
+     * Uses mcstatus.io's Java Edition status API.
+     *
+     * The API provides:
+     * - Online/offline state
+     * - Current player count
+     * - Maximum player count
+     */
+
+    async function updateServerStatus() {
+
+      const statusDot =
+        document.getElementById("statusDot");
+
+      const statusText =
+        document.getElementById("statusText");
+
+      const playerCount =
+        document.getElementById("playerCount");
+
+      const statusUpdated =
+        document.getElementById("statusUpdated");
+
+      const serverAddress =
+        "pvpchronicles.dpdns.org";
+
+
+      try {
+
+        const response = await fetch(
+          "https://api.mcstatus.io/v2/status/java/" +
+          encodeURIComponent(serverAddress)
+        );
+
+
+        if (!response.ok) {
+          throw new Error("Status request failed");
+        }
+
+
+        const data = await response.json();
+
+
+        /*
+         * Server is online
+         */
+
+        if (data.online) {
+
+          statusDot.className =
+            "status_dot online";
+
+          statusText.className =
+            "status_text online";
+
+          statusText.textContent =
+            "ONLINE";
+
+
+          if (data.players) {
+
+            const online =
+              data.players.online;
+
+            const max =
+              data.players.max;
+
+            playerCount.textContent =
+              online +
+              " / " +
+              max +
+              " PLAYERS ONLINE";
+
+          }
+
+          else {
+
+            playerCount.textContent =
+              "PLAYER COUNT UNAVAILABLE";
+
+          }
+
+
+          statusUpdated.textContent =
+            "Status updated just now";
+
+        }
+
+
+        /*
+         * Server is offline
+         */
+
+        else {
+
+          statusDot.className =
+            "status_dot offline";
+
+          statusText.className =
+            "status_text offline";
+
+          statusText.textContent =
+            "OFFLINE";
+
+          playerCount.textContent =
+            "The server is currently offline.";
+
+          statusUpdated.textContent =
+            "Status updated just now";
+
+        }
+
+      }
+
+
+      /*
+       * API/network error
+       */
+
+      catch (error) {
+
+        statusDot.className =
+          "status_dot offline";
+
+        statusText.className =
+          "status_text offline";
+
+        statusText.textContent =
+          "STATUS UNAVAILABLE";
+
+        playerCount.textContent =
+          "Unable to check the server right now.";
+
+        statusUpdated.textContent =
+          "We'll try again shortly.";
+
+        console.error(
+          "Minecraft server status error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /*
+     * Check immediately when the page loads.
+     */
+
+    updateServerStatus();
+
+
+    /*
+     * Refresh the status every 30 seconds.
+     */
+
+    setInterval(
+      updateServerStatus,
+      30000
+    );
+
   </script>
 
 </body>
