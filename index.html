@@ -17,7 +17,6 @@
       --muted: #a0a0a0;
       --accent: #e63946;
       --accent-dark: #a51f2a;
-      --success: #4caf50;
     }
 
     * {
@@ -42,7 +41,9 @@
       text-decoration: none;
     }
 
-    /* Navigation */
+    /* =========================
+       Navigation
+    ========================= */
 
     .navbar {
       position: sticky;
@@ -57,6 +58,7 @@
 
       background: rgba(10, 10, 10, 0.95);
       border-bottom: 1px solid var(--border);
+
       backdrop-filter: blur(10px);
     }
 
@@ -72,13 +74,14 @@
 
     .navbar_links {
       display: flex;
-      gap: 28px;
       align-items: center;
+      gap: 28px;
     }
 
     .navbar_links a {
       color: var(--muted);
       font-weight: 600;
+
       transition: color 0.2s ease;
     }
 
@@ -88,7 +91,9 @@
 
     .navbar_join {
       padding: 9px 17px;
+
       border-radius: 6px;
+
       background: var(--accent);
       color: white !important;
     }
@@ -97,7 +102,9 @@
       background: var(--accent-dark);
     }
 
-    /* Hero */
+    /* =========================
+       Hero
+    ========================= */
 
     .hero {
       min-height: 90vh;
@@ -155,6 +162,7 @@
       margin-top: 25px;
 
       color: var(--muted);
+
       font-size: clamp(18px, 3vw, 26px);
     }
 
@@ -168,18 +176,24 @@
       border-radius: 8px;
 
       background: var(--card);
+      color: var(--text);
 
       font-family: monospace;
       font-size: 18px;
       font-weight: 700;
 
       cursor: pointer;
-      transition: all 0.2s ease;
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
     }
 
     .server_ip:hover {
       border-color: var(--accent);
       background: var(--card-hover);
+
       transform: translateY(-2px);
     }
 
@@ -189,15 +203,20 @@
       margin-top: 4px;
 
       color: var(--muted);
+
       font-family: Arial, Helvetica, sans-serif;
       font-size: 11px;
       font-weight: normal;
     }
 
+    /* =========================
+       Season Banner
+    ========================= */
+
     .season_banner {
       max-width: 700px;
-      margin: 50px auto 0;
 
+      margin: 50px auto 0;
       padding: 28px;
 
       border: 1px solid var(--accent-dark);
@@ -238,10 +257,13 @@
       color: var(--muted);
     }
 
-    /* Sections */
+    /* =========================
+       Sections
+    ========================= */
 
     section {
       max-width: 1100px;
+
       margin: auto;
       padding: 100px 25px;
     }
@@ -259,11 +281,15 @@
       color: var(--accent);
     }
 
-    /* Features */
+    /* =========================
+       Features
+    ========================= */
 
     .features {
       display: grid;
+
       grid-template-columns: repeat(5, 1fr);
+
       gap: 16px;
     }
 
@@ -283,7 +309,9 @@
 
     .feature:hover {
       transform: translateY(-5px);
+
       border-color: var(--accent-dark);
+
       background: var(--card-hover);
     }
 
@@ -305,17 +333,23 @@
       margin-top: 10px;
 
       color: var(--muted);
+
       font-size: 14px;
     }
 
-    /* Staff */
+    /* =========================
+       Staff
+    ========================= */
 
     .staff {
       display: grid;
+
       grid-template-columns: repeat(2, 1fr);
+
       gap: 20px;
 
       max-width: 750px;
+
       margin: auto;
     }
 
@@ -354,11 +388,84 @@
       color: var(--muted);
     }
 
-    /* Join */
+    /* =========================
+       Rules
+    ========================= */
+
+    .rules {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+
+      max-width: 950px;
+
+      margin: auto;
+    }
+
+    .rule {
+      padding: 30px;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      background: var(--card);
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .rule:hover {
+      transform: translateY(-5px);
+
+      border-color: var(--accent-dark);
+
+      background: var(--card-hover);
+    }
+
+    .rule_number {
+      color: var(--accent);
+
+      font-family: monospace;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .rule h3 {
+      margin-top: 12px;
+
+      font-size: 21px;
+    }
+
+    .rule p {
+      margin-top: 10px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    .rules_footer {
+      margin-top: 35px;
+
+      color: var(--muted);
+
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* =========================
+       Join
+    ========================= */
 
     .join_grid {
       display: grid;
+
       grid-template-columns: repeat(2, 1fr);
+
       gap: 25px;
     }
 
@@ -379,7 +486,9 @@
 
     .join_info {
       display: grid;
+
       grid-template-columns: 90px 1fr;
+
       gap: 10px;
 
       font-size: 15px;
@@ -387,12 +496,14 @@
 
     .join_label {
       color: var(--muted);
+
       font-weight: 700;
     }
 
     .join_value {
       font-family: monospace;
       font-weight: 700;
+
       word-break: break-word;
     }
 
@@ -448,10 +559,13 @@
       border-left: 3px solid var(--accent);
 
       background: rgba(230, 57, 70, 0.07);
+
       color: var(--muted);
     }
 
-    /* Footer */
+    /* =========================
+       Footer
+    ========================= */
 
     footer {
       padding: 35px 20px;
@@ -461,6 +575,7 @@
       text-align: center;
 
       color: var(--muted);
+
       font-size: 13px;
     }
 
@@ -468,11 +583,17 @@
       color: var(--text);
     }
 
-    /* Mobile */
+    /* =========================
+       Mobile
+    ========================= */
 
     @media (max-width: 900px) {
       .features {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .rules {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -491,6 +612,7 @@
 
       .hero {
         min-height: auto;
+
         padding: 90px 20px;
       }
 
@@ -521,8 +643,12 @@
 
 <body>
 
-  <!-- Navigation -->
+  <!-- =========================
+       Navigation
+  ========================= -->
+
   <nav class="navbar">
+
     <a href="#" class="navbar_logo">
       PvP <span>Chronicles</span>
     </a>
@@ -530,13 +656,19 @@
     <div class="navbar_links">
       <a href="#features">Features</a>
       <a href="#staff">Staff</a>
-      <a href="#join">How to Join</a>
+      <a href="#rules">Rules</a>
       <a href="#join" class="navbar_join">Join Us</a>
     </div>
+
   </nav>
 
-  <!-- Hero -->
+
+  <!-- =========================
+       Hero
+  ========================= -->
+
   <header class="hero">
+
     <div class="hero_content">
 
       <div class="server_badge">
@@ -557,12 +689,17 @@
         type="button"
       >
         pvpchronicles.dpdns.org
+
         <span class="copy_hint">
           Click to copy server address
         </span>
       </button>
 
+
+      <!-- Season 1 -->
+
       <div class="season_banner">
+
         <span class="season_title">
           SEASON 1
         </span>
@@ -575,12 +712,18 @@
           The first season of PvP Chronicles: Seasons is almost here.
           Get ready for PvP, rivalries, chaos, and almost no rules.
         </span>
+
       </div>
 
     </div>
+
   </header>
 
-  <!-- Features -->
+
+  <!-- =========================
+       Features
+  ========================= -->
+
   <section id="features">
 
     <h2 class="section_title">
@@ -591,43 +734,67 @@
 
       <div class="feature">
         <span class="feature_number">01</span>
-        <h3>Open PvP</h3>
+
+        <h3>
+          Open PvP
+        </h3>
+
         <p>
           Fight other players, build your reputation,
           and prove yourself.
         </p>
       </div>
 
+
       <div class="feature">
         <span class="feature_number">02</span>
-        <h3>Almost No Rules</h3>
+
+        <h3>
+          Almost No Rules
+        </h3>
+
         <p>
           Play your way with very few restrictions.
           Just expect consequences.
         </p>
       </div>
 
+
       <div class="feature">
         <span class="feature_number">03</span>
-        <h3>Season 1</h3>
+
+        <h3>
+          Season 1
+        </h3>
+
         <p>
           Season 1 starts August 26th.
           Be there from the beginning.
         </p>
       </div>
 
+
       <div class="feature">
         <span class="feature_number">04</span>
-        <h3>Rivalries</h3>
+
+        <h3>
+          Rivalries
+        </h3>
+
         <p>
           Make allies, make enemies, and create
           your own story.
         </p>
       </div>
 
+
       <div class="feature">
         <span class="feature_number">05</span>
-        <h3>Pure Minecraft</h3>
+
+        <h3>
+          Pure Minecraft
+        </h3>
+
         <p>
           Jump into the world and see what happens.
         </p>
@@ -637,7 +804,11 @@
 
   </section>
 
-  <!-- Staff -->
+
+  <!-- =========================
+       Staff
+  ========================= -->
+
   <section id="staff">
 
     <h2 class="section_title">
@@ -647,6 +818,7 @@
     <div class="staff">
 
       <div class="staff_member">
+
         <span class="staff_rank">
           [OWNER]
         </span>
@@ -658,9 +830,12 @@
         <p>
           Founder and owner of PvP Chronicles: Seasons.
         </p>
+
       </div>
 
+
       <div class="staff_member">
+
         <span class="staff_rank">
           [ADMIN]
         </span>
@@ -672,13 +847,93 @@
         <p>
           Administrator helping manage the server and community.
         </p>
+
       </div>
 
     </div>
 
   </section>
 
-  <!-- How to Join -->
+
+  <!-- =========================
+       Rules
+  ========================= -->
+
+  <section id="rules">
+
+    <h2 class="section_title">
+      The <span>Rules</span>
+    </h2>
+
+    <div class="rules">
+
+      <div class="rule">
+
+        <span class="rule_number">
+          01
+        </span>
+
+        <h3>
+          No Cheating
+        </h3>
+
+        <p>
+          Keep it fair. Don't use anything that gives
+          you an unfair advantage over other players.
+        </p>
+
+      </div>
+
+
+      <div class="rule">
+
+        <span class="rule_number">
+          02
+        </span>
+
+        <h3>
+          No X-Ray
+        </h3>
+
+        <p>
+          Don't use X-Ray or anything that lets you
+          see through blocks to find ores or players.
+        </p>
+
+      </div>
+
+
+      <div class="rule">
+
+        <span class="rule_number">
+          03
+        </span>
+
+        <h3>
+          No Hacks
+        </h3>
+
+        <p>
+          No hacked clients or other cheats designed
+          to give you an unfair advantage.
+        </p>
+
+      </div>
+
+    </div>
+
+    <p class="rules_footer">
+      That's it. Three rules. Have fun and don't ruin
+      the game for everyone else.
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       How to Join
+  ========================= -->
+
   <section id="join">
 
     <h2 class="section_title">
@@ -687,7 +942,9 @@
 
     <div class="join_grid">
 
-      <!-- Java -->
+
+      <!-- Java Edition -->
+
       <div class="join_card">
 
         <h3>
@@ -695,16 +952,26 @@
         </h3>
 
         <div class="join_info">
-          <span class="join_label">IP:</span>
+
+          <span class="join_label">
+            IP:
+          </span>
+
           <span class="join_value">
             pvpchronicles.dpdns.org
           </span>
 
-          <span class="join_label">Version:</span>
+
+          <span class="join_label">
+            Version:
+          </span>
+
           <span class="join_value">
             26.2
           </span>
+
         </div>
+
 
         <div class="instructions">
 
@@ -713,7 +980,7 @@
           </h4>
 
           <p>
-            To join on Java Edition, you need:
+            To join on Java Edition, you'll need:
           </p>
 
           <ul>
@@ -721,6 +988,7 @@
             <li>Fabric API</li>
             <li>Backport 26.3 Update</li>
           </ul>
+
 
           <a
             href="https://www.curseforge.com/minecraft/mc-mods/backport-update"
@@ -731,6 +999,7 @@
             Download Backport 26.3 Update
           </a>
 
+
           <p style="margin-top: 18px;">
             The Backport mod brings selected Minecraft 26.3
             content and gameplay changes to Minecraft 26.2.
@@ -740,7 +1009,9 @@
 
       </div>
 
-      <!-- Bedrock -->
+
+      <!-- Bedrock Edition -->
+
       <div class="join_card">
 
         <h3>
@@ -748,16 +1019,26 @@
         </h3>
 
         <div class="join_info">
-          <span class="join_label">IP:</span>
+
+          <span class="join_label">
+            IP:
+          </span>
+
           <span class="join_value">
             pvpchronicles.dpdns.org
           </span>
 
-          <span class="join_label">Port:</span>
+
+          <span class="join_label">
+            Port:
+          </span>
+
           <span class="join_value">
             25565
           </span>
+
         </div>
+
 
         <div class="instructions">
 
@@ -770,12 +1051,27 @@
             adding the server on Bedrock Edition.
           </p>
 
+
           <div class="important">
-            <strong>Server Address</strong><br>
+
+            <strong>
+              Server Address
+            </strong>
+
+            <br>
+
             pvpchronicles.dpdns.org
+
             <br><br>
-            <strong>Port</strong><br>
+
+            <strong>
+              Port
+            </strong>
+
+            <br>
+
             25565
+
           </div>
 
         </div>
@@ -786,15 +1082,31 @@
 
   </section>
 
-  <!-- Footer -->
+
+  <!-- =========================
+       Footer
+  ========================= -->
+
   <footer>
-    <strong>PvP Chronicles: Seasons</strong>
+
+    <strong>
+      PvP Chronicles: Seasons
+    </strong>
+
     © 2026 — Owned by mew_404
+
   </footer>
+
+
+  <!-- =========================
+       JavaScript
+  ========================= -->
 
   <script>
     function copyServerIP() {
-      navigator.clipboard.writeText("pvpchronicles.dpdns.org");
+      const ip = "pvpchronicles.dpdns.org";
+
+      navigator.clipboard.writeText(ip);
 
       const button = document.querySelector(".server_ip");
       const hint = button.querySelector(".copy_hint");
