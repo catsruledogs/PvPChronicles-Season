@@ -1,588 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PvP Chronicles: Seasons</title>
+  <title>PvP Chronicles: Seasons</title>
 
-    <link rel="icon" type="image/png" href="media/favicon.png">
-    <link rel="stylesheet" href="media/style.css">
-    <link href="https://fonts.bunny.net/css?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
+  <link rel="icon" type="image/png" href="media/favicon.png">
+  <link rel="stylesheet" href="media/style.css">
+  <link href="https://fonts.bunny.net/css?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-  <body>
+<body>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Desktop Navigation -->
-    <nav class="desktop_navbar">
+  <!-- Desktop Navigation -->
+  <nav class="desktop_navbar">
+    <a href="#">
+      <img
+        class="desktop_navbar_logo_img"
+        src="media/logo_small.png"
+        alt="PvP Chronicles: Seasons logo"
+      >
+    </a>
 
-      <a href="#">
-        <img
-          class="desktop_navbar_logo_img"
-          src="media/logo_small.png"
-          alt="PvP Chronicles: Seasons logo">
+    <a href="#more" class="desktop_navbar_link scroll">
+      Features
+    </a>
+
+    <a href="#about" class="desktop_navbar_link scroll">
+      Staff
+    </a>
+
+    <div class="desktop_navbar_link2_div">
+      <a href="#join" class="desktop_navbar_link2 scroll">
+        Join Us!
       </a>
+    </div>
+  </nav>
 
-      <a href="#more" class="desktop_navbar_link scroll">
+  <!-- Mobile Navigation -->
+  <div class="mobile_navbar">
+    <a href="#" class="mobile_navbar_logo_img_a">
+      <img
+        class="mobile_navbar_logo_img"
+        src="media/logo_small.png"
+        alt="PvP Chronicles: Seasons logo"
+      >
+    </a>
+
+    <div id="mobile_navbar_links">
+      <a
+        class="mobile_navbar_link scroll"
+        onclick="mobile_navbar_link_hider()"
+        href="#more"
+      >
         Features
       </a>
 
-      <a href="#about" class="desktop_navbar_link scroll">
+      <a
+        class="mobile_navbar_link scroll"
+        onclick="mobile_navbar_link_hider()"
+        href="#about"
+      >
         Staff
       </a>
 
-      <div class="desktop_navbar_link2_div">
-        <a href="#join" class="desktop_navbar_link2 scroll">
-          Join Us!
-        </a>
-      </div>
+      <a
+        class="mobile_navbar_link scroll"
+        onclick="mobile_navbar_link_hider()"
+        href="#join"
+      >
+        Join Us
+      </a>
+    </div>
 
-    </nav>
+    <div class="icon" onclick="mobile_navbar_link_hider()">
+      <i class="fa fa-bars"></i>
+    </div>
 
+    <script>
+      function mobile_navbar_link_hider() {
+        var x = document.getElementById("mobile_navbar_links");
 
-    <!-- Mobile Navigation -->
-    <div class="mobile_navbar">
+        if (x.style.display === "flex") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "flex";
+        }
+      }
+    </script>
+  </div>
 
-      <a href="#" class="mobile_navbar_logo_img_a">
+  <div class="mainflex">
+
+    <!-- Hero Section -->
+    <div class="main1">
+
+      <a class="main1_logo_a" href="#">
         <img
-          class="mobile_navbar_logo_img"
-          src="media/logo_small.png"
-          alt="PvP Chronicles: Seasons logo">
+          class="main1_logo"
+          src="media/logo.png"
+          alt="PvP Chronicles: Seasons"
+        >
       </a>
 
-      <div id="mobile_navbar_links">
-
-        <a
-          class="mobile_navbar_link scroll"
-          onclick="mobile_navbar_link_hider()"
-          href="#more">
-          Features
+      <div class="main1_description">
+        <a>
+          PvP,<br>
+          like
         </a>
 
-        <a
-          class="mobile_navbar_link scroll"
-          onclick="mobile_navbar_link_hider()"
-          href="#about">
-          Staff
+        <a class="main1_actcent">
+          there are almost no rules
         </a>
 
-        <a
-          class="mobile_navbar_link scroll"
-          onclick="mobile_navbar_link_hider()"
-          href="#join">
-          Join Us
-        </a>
-
+        <a>.</a>
       </div>
 
-      <div class="icon" onclick="mobile_navbar_link_hider()">
-        <i class="fa fa-bars"></i>
+      <!-- Server Address -->
+      <div class="main1_ipcopier_div">
+        <button
+          class="main1_ipcopier"
+          onclick="copyText()"
+          type="button"
+        >
+          <span class="main1_ipcopier_text1">
+            pvpchronicles.dpdns.org
+          </span>
+
+          <br>
+
+          <span class="main1_ipcopier_text2">
+            Click to copy
+          </span>
+        </button>
+
+        <script>
+          function copyText() {
+            navigator.clipboard.writeText("pvpchronicles.dpdns.org");
+          }
+
+          $(document).ready(function () {
+            $('.main1_ipcopier').click(function () {
+              var popup = $('<div>', {
+                class: 'main1_popup'
+              }).append(
+                $('<h3 class="copy_confirm">')
+                  .text('Copied IP to clipboard')
+              );
+
+              $(this).after(popup);
+
+              setTimeout(function () {
+                popup.remove();
+              }, 1000);
+            });
+          });
+        </script>
       </div>
+
+      <!-- Season 1 Banner -->
+      <div class="season_banner">
+        <a class="season_banner_title">
+          SEASON 1
+        </a>
+
+        <a class="season_banner_date">
+          Starts August 26th
+        </a>
+
+        <a class="season_banner_text">
+          The first season of PvP Chronicles: Seasons is almost here.
+          Get ready for PvP, rivalries, chaos, and almost no rules.
+        </a>
+      </div>
+
+      <a href="#more" class="scroll">
+        <img
+          alt="downarrow"
+          class="main1_downarrow"
+          src="media/downarrow.png"
+        >
+      </a>
 
       <script>
-        function mobile_navbar_link_hider() {
-          var x = document.getElementById("mobile_navbar_links");
+        const scrollLinks = document.querySelectorAll('.scroll');
 
-          if (x.style.display === "flex") {
-            x.style.display = "none";
-          } else {
-            x.style.display = "flex";
-          }
-        }
+        scrollLinks.forEach(function (link) {
+          link.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const target = document.querySelector(
+              link.getAttribute('href')
+            );
+
+            const offsetTop = target.offsetTop;
+
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          });
+        });
       </script>
 
     </div>
 
-
-    <div class="mainflex">
-
-
-      <!-- Hero Section -->
-      <div class="main1">
-
-        <a class="main1_logo_a" href="#">
-          <img
-            class="main1_logo"
-            src="media/logo.png"
-            alt="PvP Chronicles: Seasons">
-        </a>
-
-        <div class="main1_description">
-          <a>
-            PvP,<br>
-            like
-          </a>
-
-          <a class="main1_actcent">
-            there are almost no rules
-          </a>
-
-          <a>.</a>
-        </div>
-
-
-        <!-- Server Address -->
-        <div class="main1_ipcopier_div">
-
-          <button
-            class="main1_ipcopier"
-            onclick="copyText()"
-            type="button">
-
-            <span class="main1_ipcopier_text1">
-              pvpchronicles.dpdns.org
-            </span>
-
-            <br>
-
-            <span class="main1_ipcopier_text2">
-              Click to copy
-            </span>
-
-          </button>
-
-          <script>
-            function copyText() {
-              navigator.clipboard.writeText("pvpchronicles.dpdns.org");
-            }
-
-            $(document).ready(function() {
-
-              $('.main1_ipcopier').click(function() {
-
-                var popup = $('<div>', {
-                  class: 'main1_popup'
-                })
-                .append(
-                  $('<h3 class="copy_confirm">')
-                    .text('Copied IP to clipboard')
-                );
-
-                $(this).after(popup);
-
-                setTimeout(function() {
-                  popup.remove();
-                }, 1000);
-
-              });
-
-            });
-          </script>
-
-        </div>
-
-
-        <!-- Season 1 Date -->
-        <div class="season_banner">
-
-          <a class="season_banner_title">
-            SEASON 1
-          </a>
-
-          <a class="season_banner_date">
-            Starts August 26th
-          </a>
-
-          <a class="season_banner_text">
-            The first season of PvP Chronicles: Seasons is almost here.
-            Get ready for PvP, rivalries, chaos, and almost no rules.
-          </a>
-
-        </div>
-
-
-        <a href="#more" class="scroll">
-          <img
-            alt="downarrow"
-            class="main1_downarrow"
-            src="media/downarrow.png">
-        </a>
-
-
-        <script>
-          const scrollLinks = document.querySelectorAll('.scroll');
-
-          scrollLinks.forEach(function(link) {
-
-            link.addEventListener('click', function(event) {
-
-              event.preventDefault();
-
-              const target = document.querySelector(
-                link.getAttribute('href')
-              );
-
-              const offsetTop = target.offsetTop;
-
-              window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-              });
-
-            });
-
-          });
-        </script>
-
-      </div>
-
-
-      <div id="more"></div>
-
-
-      <!-- Features -->
-      <div class="main2">
-
-        <a class="headline">
-          What we have
-        </a>
-
-        <div class="main2_features_div">
-
-
-          <div class="main2_feature">
-
-            <img
-              class="main2_feature_img"
-              alt="PvP"
-              src="media/placeholder.png">
-
-            <a class="main2_feature_headline">
-              Open PvP
-            </a>
-
-            <a class="main2_feature_text">
-              Fight other players, build your reputation,
-              and prove yourself.
-            </a>
-
-          </div>
-
-
-          <div class="main2_feature">
-
-            <img
-              class="main2_feature_img"
-              alt="Almost No Rules"
-              src="media/placeholder.png">
-
-            <a class="main2_feature_headline">
-              Almost No Rules
-            </a>
-
-            <a class="main2_feature_text">
-              Play your way with very few restrictions.
-              Just expect consequences.
-            </a>
-
-          </div>
-
-
-          <div class="main2_feature">
-
-            <img
-              class="main2_feature_img"
-              alt="Season 1"
-              src="media/placeholder.png">
-
-            <a class="main2_feature_headline">
-              Season 1
-            </a>
-
-            <a class="main2_feature_text">
-              Season 1 starts August 26th.
-              Be there from the beginning.
-            </a>
-
-          </div>
-
-
-          <div class="main2_feature">
-
-            <img
-              class="main2_feature_img"
-              alt="Rivalries"
-              src="media/placeholder.png">
-
-            <a class="main2_feature_headline">
-              Rivalries
-            </a>
-
-            <a class="main2_feature_text">
-              Make allies, make enemies, and create
-              your own story.
-            </a>
-
-          </div>
-
-
-          <div class="main2_feature">
-
-            <img
-              class="main2_feature_img"
-              alt="Minecraft"
-              src="media/placeholder.png">
-
-            <a class="main2_feature_headline">
-              Minecraft
-            </a>
-
-            <a class="main2_feature_text">
-              Jump into the world and see what happens.
-            </a>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-
-      <!-- Staff -->
-      <div id="about"></div>
-
-      <div class="main5">
-
-        <a class="headline">
-          Who we are
-        </a>
-
-
-        <div class="main5_admin_div">
-
-
-          <!-- Owner -->
-          <div class="main5_admins_div main5_admins_dev_type2">
-
-            <img
-              class="main5_admins_img"
-              alt="mew_404"
-              src="media/member_placeholder.webp">
-
-            <div class="main5_admins_description_div">
-
-              <a class="main5_admins_description_rank main5_admins_description_rank_owner">
-                [Owner]
-              </a>
-
-              <a class="main5_admins_description_title">
-                mew_404
-              </a>
-
-              <a class="main5_admins_description">
-                Owner<br>
-                Founder and owner of PvP Chronicles: Seasons.
-              </a>
-
-            </div>
-
-          </div>
-
-
-          <!-- Admin -->
-          <div class="main5_admins_div main5_admins_dev_type1">
-
-            <img
-              class="main5_admins_img"
-              alt="RoboPig111"
-              src="media/member_placeholder.webp">
-
-            <div class="main5_admins_description_div">
-
-              <a class="main5_admins_description_rank main5_admins_description_rank_admin">
-                [Admin]
-              </a>
-
-              <a class="main5_admins_description_title">
-                RoboPig111
-              </a>
-
-              <a class="main5_admins_description">
-                Administrator<br>
-                Helps manage the server and community.
-              </a>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-
-        <!-- Moderators -->
-        <div class="main5_supporter_div">
-
-          <div class="main5_supporters_div">
-
-            <img
-              class="main5_supporters_img"
-              alt="FlamingBeen21"
-              src="media/member_placeholder.webp">
-
-            <div class="main5_supporters_description_div">
-
-              <a class="main5_supporters_description_rank main5_supporters_description_rank_supporter">
-                [Moderator]
-              </a>
-
-              <a class="main5_supporters_description_title">
-                FlamingBeen21
-              </a>
-
-              <a class="main5_supporters_description">
-                Moderator<br>
-                Helps manage the server and keep things running.
-              </a>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- How to Join -->
-      <div id="join"></div>
-
-      <div class="main3">
-
-        <a class="headline">
-          How to join
-        </a>
-
-
-        <div class="main3_join_div_div">
-
-
-          <!-- Java Edition -->
-          <div class="main3_join_div">
-
-            <a class="main3_join_title">
-              Java Edition
-            </a>
-
-            <div class="main3_join_content_div">
-
-              <div class="main3_join_categories">
-                <a>IP:</a>
-                <a>Version:</a>
-              </div>
-
-              <div class="main3_join_values">
-                <a>pvpchronicles.dpdns.org</a>
-                <a>26.2</a>
-              </div>
-
-            </div>
-
-
-            <div class="join_instructions">
-
-              <a class="main3_join_title">
-                Required Mods
-              </a>
-
-              <a class="main3_join_text">
-                To join on Java Edition, you need:
-              </a>
-
-              <a class="main3_join_text">
-                • Fabric Loader<br>
-                • Fabric API<br>
-                • Backport 26.3 Update
-              </a>
-
-              <a
-                href="https://www.curseforge.com/minecraft/mc-mods/backport-update"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="main3_join_link">
-                Download Backport 26.3 Update
-              </a>
-
-              <a class="main3_join_text">
-                The Backport mod brings selected Minecraft 26.3
-                content and gameplay changes to Minecraft 26.2.
-              </a>
-
-            </div>
-
-          </div>
-
-
-          <!-- Bedrock Edition -->
-          <div class="main3_join_div">
-
-            <a class="main3_join_title">
-              Bedrock Edition
-            </a>
-
-            <div class="main3_join_content_div">
-
-              <div class="main3_join_categories">
-                <a>IP:</a>
-                <a>Port:</a>
-              </div>
-
-              <div class="main3_join_values">
-                <a>pvpchronicles.dpdns.org</a>
-                <a>25565</a>
-              </div>
-
-            </div>
-
-
-            <div class="join_instructions">
-
-              <a class="main3_join_title">
-                Important
-              </a>
-
-              <a class="main3_join_text">
-                The port must be manually specified when
-                adding the server on Bedrock Edition.
-              </a>
-
-              <a class="main3_join_text">
-                <strong>Server Address:</strong><br>
-                pvpchronicles.dpdns.org
-              </a>
-
-              <a class="main3_join_text">
-                <strong>Port:</strong><br>
-                25565
-              </a>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-    <!-- Footer -->
-    <footer class="copyright_div">
-
-      <a href="#" class="copyright">
-        PvP Chronicles: Seasons © 2026 — Owned by mew_404
+    <div id="more"></div>
+
+    <!-- Features -->
+    <div class="main2">
+      <a class="headline">
+        What we have
       </a>
 
-    </footer>
+      <div class="main2_features_div">
 
+        <div class="main2_feature">
+          <img
+            class="main2_feature_img"
+            alt="PvP"
+            src="media/placeholder.png"
+          >
 
-  </body>
+          <a class="main2_feature_headline">
+            Open PvP
+          </a>
+
+          <a class="main2_feature_text">
+            Fight other players, build your reputation,
+            and prove yourself.
+          </a>
+        </div>
+
+        <div class="main2_feature">
+          <img
+            class="main2_feature_img"
+            alt="Almost No Rules"
+            src="media/placeholder.png"
+          >
+
+          <a class="main2_feature_headline">
+            Almost No Rules
+          </a>
+
+          <a class="main2_feature_text">
+            Play your way with very few restrictions.
+            Just expect consequences.
+          </a>
+        </div>
+
+        <div class="main2_feature">
+          <img
+            class="main2_feature_img"
+            alt="Season 1"
+            src="media/placeholder.png"
+          >
+
+          <a class="main2_feature_headline">
+            Season 1
+          </a>
+
+          <a class="main2_feature_text">
+            Season 1 starts August 26th.
+            Be there from the beginning.
+          </a>
+        </div>
+
+        <div class="main2_feature">
+          <img
+            class="main2_feature_img"
+            alt="Rivalries"
+            src="media/placeholder.png"
+          >
+
+          <a class="main2_feature_headline">
+            Rivalries
+          </a>
+
+          <a class="main2_feature_text">
+            Make allies, make enemies, and create
+            your own story.
+          </a>
+        </div>
+
+        <div class="main2_feature">
+          <img
+            class="main2_feature_img"
+            alt="Minecraft"
+            src="media/placeholder.png"
+          >
+
+          <a class="main2_feature_headline">
+            Minecraft
+          </a>
+
+          <a class="main2_feature_text">
+            Jump into the world and see what happens.
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Staff -->
+    <div id="about"></div>
+
+    <div class="main5">
+      <a class="headline">
+        Who we are
+      </a>
+
+      <div class="main5_admin_div">
+
+        <!-- Owner -->
+        <div class="main5_admins_div main5_admins_dev_type2">
+          <div class="main5_admins_description_div">
+
+            <a class="main5_admins_description_rank main5_admins_description_rank_owner">
+              [Owner]
+            </a>
+
+            <a class="main5_admins_description_title">
+              mew_404
+            </a>
+
+            <a class="main5_admins_description">
+              Owner<br>
+              Founder and owner of PvP Chronicles: Seasons.
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Admin -->
+        <div class="main5_admins_div main5_admins_dev_type1">
+          <div class="main5_admins_description_div">
+
+            <a class="main5_admins_description_rank main5_admins_description_rank_admin">
+              [Admin]
+            </a>
+
+            <a class="main5_admins_description_title">
+              RoboPig111
+            </a>
+
+            <a class="main5_admins_description">
+              Administrator<br>
+              Helps manage the server and community.
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- How to Join -->
+    <div id="join"></div>
+
+    <div class="main3">
+      <a class="headline">
+        How to join
+      </a>
+
+      <div class="main3_join_div_div">
+
+        <!-- Java Edition -->
+        <div class="main3_join_div">
+
+          <a class="main3_join_title">
+            Java Edition
+          </a>
+
+          <div class="main3_join_content_div">
+
+            <div class="main3_join_categories">
+              <a>IP:</a>
+              <a>Version:</a>
+            </div>
+
+            <div class="main3_join_values">
+              <a>pvpchronicles.dpdns.org</a>
+              <a>26.2</a>
+            </div>
+
+          </div>
+
+          <div class="join_instructions">
+
+            <a class="main3_join_title">
+              Required Mods
+            </a>
+
+            <a class="main3_join_text">
+              To join on Java Edition, you need:
+            </a>
+
+            <a class="main3_join_text">
+              • Fabric Loader<br>
+              • Fabric API<br>
+              • Backport 26.3 Update
+            </a>
+
+            <a
+              href="https://www.curseforge.com/minecraft/mc-mods/backport-update"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="main3_join_link"
+            >
+              Download Backport 26.3 Update
+            </a>
+
+            <a class="main3_join_text">
+              The Backport mod brings selected Minecraft 26.3
+              content and gameplay changes to Minecraft 26.2.
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- Bedrock Edition -->
+        <div class="main3_join_div">
+
+          <a class="main3_join_title">
+            Bedrock Edition
+          </a>
+
+          <div class="main3_join_content_div">
+
+            <div class="main3_join_categories">
+              <a>IP:</a>
+              <a>Port:</a>
+            </div>
+
+            <div class="main3_join_values">
+              <a>pvpchronicles.dpdns.org</a>
+              <a>25565</a>
+            </div>
+
+          </div>
+
+          <div class="join_instructions">
+
+            <a class="main3_join_title">
+              Important
+            </a>
+
+            <a class="main3_join_text">
+              The port must be manually specified when
+              adding the server on Bedrock Edition.
+            </a>
+
+            <a class="main3_join_text">
+              <strong>Server Address:</strong><br>
+              pvpchronicles.dpdns.org
+            </a>
+
+            <a class="main3_join_text">
+              <strong>Port:</strong><br>
+              25565
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="copyright_div">
+    <a href="#" class="copyright">
+      PvP Chronicles: Seasons © 2026 — Owned by mew_404
+    </a>
+  </footer>
+
+</body>
 </html>
