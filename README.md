@@ -1,1 +1,1 @@
-A Website for PvP Chronicles: Seasons
+The Official Website for PvP Chronicles: Seasons
